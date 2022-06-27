@@ -47,5 +47,17 @@ namespace TextFilterTests
 
             result.Should().BeEquivalentTo(expectedResult);
         }
+
+        [TestMethod]
+        public void FilterWordsWithLenghtLessThanThree()
+        {
+            var text = "'clean' what rather do.";
+            var expectedResult = "'clean' what rather .";
+
+            var result = _textFilter.FilterWordsWithLengthLessThanThree(text);
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
+
     }
 }
