@@ -42,12 +42,57 @@ namespace TextFilter.Utilities
 
         public string FilterWordsWithLengthLessThanThree(string text)
         {
-            throw new NotImplementedException();
+            var allWords = RemoveNonLetterCharacters(text).Split(' ');
+            var wordsToFilter = GetWordsWithLengthLessThanThree(allWords);
+
+            Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
+
+            var result = regex.Replace(text, "");
+
+            return result;
+        }
+
+        private List<string> GetWordsWithLengthLessThanThree(string[] allWords)
+        {
+            var wordsWithLenghtLessThanThree = new List<string>();
+
+            foreach (var word in allWords)
+            {
+                if (word.Length < 3)
+                {
+                    wordsWithLenghtLessThanThree.Add(word);
+                }
+            }
+
+            return wordsWithLenghtLessThanThree;
         }
 
         public string FilterWordsContainingTheLetterT(string text)
         {
-            throw new NotImplementedException();
+            var allWords = RemoveNonLetterCharacters(text).Split(' ');
+            var wordsToFilter = GetWordsWithLetterT(allWords);
+
+            Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
+
+            var result = regex.Replace(text, "");
+
+            return result;
+        }
+
+        private List<string> GetWordsWithLetterT(string[] allWords)
+        {
+            var wordsWithLetterT = new List<string>();
+
+            foreach (var word in allWords)
+            {
+                
+                if (word.Any(w => w.Equals('t')))
+                {
+                    wordsWithLetterT.Add(word);
+                }
+            }
+
+            return wordsWithLetterT;
         }
 
         private static string RemoveNonLetterCharacters(string s)
