@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFilter", "TextFilter\TextFilter.csproj", "{74CC6E0D-1DCB-4A64-A694-22ACB80B5211}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFilterTests", "TextFilterTests\TextFilterTests.csproj", "{C5C511D7-6955-4732-9527-CD6B63AB1C8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{74CC6E0D-1DCB-4A64-A694-22ACB80B5211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74CC6E0D-1DCB-4A64-A694-22ACB80B5211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74CC6E0D-1DCB-4A64-A694-22ACB80B5211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C511D7-6955-4732-9527-CD6B63AB1C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C511D7-6955-4732-9527-CD6B63AB1C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C511D7-6955-4732-9527-CD6B63AB1C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C511D7-6955-4732-9527-CD6B63AB1C8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
