@@ -102,6 +102,5 @@ namespace TextFilterTests
 
             result.Should().BeEquivalentTo(expectedResult);
         }
-
     }
 }
