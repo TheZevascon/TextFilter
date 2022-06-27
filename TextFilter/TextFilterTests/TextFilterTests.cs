@@ -27,6 +27,17 @@ namespace TextFilterTests
         }
 
         [TestMethod]
+        public void FilterWordsWithVowelInTheMiddleOfWordCaps()
+        {
+            var text = "CLEAN WHAT RATHER";
+            var expectedResult = "  RATHER";
+
+            var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [TestMethod]
         public void FilterWordsWithVowelInTheMiddleOfWord2()
         {
             var text = "clean what";
@@ -97,6 +108,17 @@ namespace TextFilterTests
         {
             var text = "'it' dad rather do paper. Jose";
             var expectedResult = "'' dad  do paper. Jose";
+
+            var result = _textFilter.FilterWordsContainingTheLetterT(text);
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [TestMethod]
+        public void FilterWordsWithLetterTCaps()
+        {
+            var text = "'IT' DAD RATHER DO PAPER. JOSE";
+            var expectedResult = "'' DAD  DO PAPER. JOSE";
 
             var result = _textFilter.FilterWordsContainingTheLetterT(text);
 

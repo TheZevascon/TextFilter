@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace TextFilter.Utilities
 {
@@ -12,19 +8,23 @@ namespace TextFilter.Utilities
         public string FilterWordsWithVowelsInMiddleOfWord(string text)
         {
             var allWords = RemoveNonLetterCharacters(text).Split(' ');
-            var wordsToFilter = GetWordsWithVowelsInTheMiddle(allWords);
+            var wordsToFilter = GetWordsWithVowelsInTheMiddle(allWords.ToList());
 
             Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
 
             var result = regex.Replace(text, "");
 
+            result = result.Replace("  ", " ");
+
             return result;
         }
 
-        private List<string> GetWordsWithVowelsInTheMiddle(string[] allWords)
+        private List<string> GetWordsWithVowelsInTheMiddle(List<string> allWords)
         {
-            var vowels = "aeiou";
+            var vowels = "aeiouAEIOU";
             var wordsWithVowelsInMiddle = new List<string>();
+
+            allWords = allWords.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
 
             foreach (var word in allWords)
             {
@@ -43,19 +43,21 @@ namespace TextFilter.Utilities
         public string FilterWordsWithLengthLessThanThree(string text)
         {
             var allWords = RemoveNonLetterCharacters(text).Split(' ');
-            var wordsToFilter = GetWordsWithLengthLessThanThree(allWords);
+            var wordsToFilter = GetWordsWithLengthLessThanThree(allWords.ToList());
 
             Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
 
             var result = regex.Replace(text, "");
 
+            result = result.Replace("  ", " ");
+
             return result;
         }
 
-        private List<string> GetWordsWithLengthLessThanThree(string[] allWords)
+        private List<string> GetWordsWithLengthLessThanThree(List<string> allWords)
         {
             var wordsWithLenghtLessThanThree = new List<string>();
-
+            allWords = allWords.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
             foreach (var word in allWords)
             {
                 if (word.Length < 3)
@@ -70,23 +72,25 @@ namespace TextFilter.Utilities
         public string FilterWordsContainingTheLetterT(string text)
         {
             var allWords = RemoveNonLetterCharacters(text).Split(' ');
-            var wordsToFilter = GetWordsWithLetterT(allWords);
+            var wordsToFilter = GetWordsWithLetterT(allWords.ToList());
 
             Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
 
             var result = regex.Replace(text, "");
 
+            result = result.Replace("  ", " ");
+
             return result;
         }
 
-        private List<string> GetWordsWithLetterT(string[] allWords)
+        private List<string> GetWordsWithLetterT(List<string> allWords)
         {
             var wordsWithLetterT = new List<string>();
-
+            allWords = allWords.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
             foreach (var word in allWords)
             {
                 
-                if (word.Any(w => w.Equals('t')))
+                if (word.Any(w => w.Equals('t') || w.Equals('T')))
                 {
                     wordsWithLetterT.Add(word);
                 }
