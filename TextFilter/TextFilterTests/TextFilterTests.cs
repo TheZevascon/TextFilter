@@ -1,22 +1,27 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using TextFilter.Utilities;
+
 
 namespace TextFilterTests
 {
     [TestClass]
     public class TextFilterTests
     {
-
-
+        private TextFilter.Utilities.TextFilter _textFilter;
+        [TestInitialize]
+        public void setup()
+        {
+            _textFilter = new TextFilter.Utilities.TextFilter();
+        }
         [TestMethod]
         public void FilterWordsWithVowelInTheMiddleOfWord()
         {
-            var textFilter = new TextFilter.Utilities.TextFilter();
             var text = "clean what rather";
-            var expectedResult = " rather";
+            var expectedResult = "  rather";
 
-            var result = textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
+            var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
 
             result.Should().BeEquivalentTo(expectedResult);
         }
@@ -24,11 +29,10 @@ namespace TextFilterTests
         [TestMethod]
         public void FilterWordsWithVowelInTheMiddleOfWord2()
         {
-            var textFilter = new TextFilter.Utilities.TextFilter();
             var text = "clean what";
             var expectedResult = " ";
 
-            var result = textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
+            var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
 
             result.Should().BeEquivalentTo(expectedResult);
         }
@@ -36,11 +40,10 @@ namespace TextFilterTests
         [TestMethod]
         public void FilterWordsWithVowelInTheMiddleOfWordDealingWithSpecialChars()
         {
-            var textFilter = new TextFilter.Utilities.TextFilter();
             var text = "'clean' what rather.";
-            var expectedResult = "'' rather.";
+            var expectedResult = "''  rather.";
 
-            var result = textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
+            var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
 
             result.Should().BeEquivalentTo(expectedResult);
         }
