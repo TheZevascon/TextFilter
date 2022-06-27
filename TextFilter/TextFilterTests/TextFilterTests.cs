@@ -19,7 +19,7 @@ namespace TextFilterTests
         public void FilterWordsWithVowelInTheMiddleOfWord()
         {
             var text = "clean what rather";
-            var expectedResult = "  rather";
+            var expectedResult = " rather";
 
             var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
 
@@ -30,7 +30,7 @@ namespace TextFilterTests
         public void FilterWordsWithVowelInTheMiddleOfWordCaps()
         {
             var text = "CLEAN WHAT RATHER";
-            var expectedResult = "  RATHER";
+            var expectedResult = " RATHER";
 
             var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
 
@@ -52,7 +52,7 @@ namespace TextFilterTests
         public void FilterWordsWithVowelInTheMiddleOfWordDealingWithSpecialChars()
         {
             var text = "'clean' what rather.";
-            var expectedResult = "''  rather.";
+            var expectedResult = "'' rather.";
 
             var result = _textFilter.FilterWordsWithVowelsInMiddleOfWord(text);
 
@@ -74,7 +74,7 @@ namespace TextFilterTests
         public void FilterWordsWithLengthLessThanThree2()
         {
             var text = "'clean' what rather do paper.";
-            var expectedResult = "'clean' what rather  paper.";
+            var expectedResult = "'clean' what rather paper.";
 
             var result = _textFilter.FilterWordsWithLengthLessThanThree(text);
 
@@ -85,7 +85,18 @@ namespace TextFilterTests
         public void FilterWordsWithLengthLessThanThree3()
         {
             var text = "'it' dad rather do paper.";
-            var expectedResult = "'' dad rather  paper.";
+            var expectedResult = "'' dad rather paper.";
+
+            var result = _textFilter.FilterWordsWithLengthLessThanThree(text);
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [TestMethod]
+        public void FilterWordsWithLengthLessThanThreeSubStrings()
+        {
+            var text = "'it' dadit rather do paper.";
+            var expectedResult = "'' dadit rather paper.";
 
             var result = _textFilter.FilterWordsWithLengthLessThanThree(text);
 
@@ -96,7 +107,7 @@ namespace TextFilterTests
         public void FilterWordsWithLetterT()
         {
             var text = "'it' dad rather do paper.";
-            var expectedResult = "'' dad  do paper.";
+            var expectedResult = "'' dad do paper.";
 
             var result = _textFilter.FilterWordsContainingTheLetterT(text);
 
@@ -107,7 +118,7 @@ namespace TextFilterTests
         public void FilterWordsWithLetterT2()
         {
             var text = "'it' dad rather do paper. Jose";
-            var expectedResult = "'' dad  do paper. Jose";
+            var expectedResult = "'' dad do paper. Jose";
 
             var result = _textFilter.FilterWordsContainingTheLetterT(text);
 
@@ -118,7 +129,7 @@ namespace TextFilterTests
         public void FilterWordsWithLetterTCaps()
         {
             var text = "'IT' DAD RATHER DO PAPER. JOSE";
-            var expectedResult = "'' DAD  DO PAPER. JOSE";
+            var expectedResult = "'' DAD DO PAPER. JOSE";
 
             var result = _textFilter.FilterWordsContainingTheLetterT(text);
 

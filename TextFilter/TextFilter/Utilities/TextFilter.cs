@@ -9,6 +9,7 @@ namespace TextFilter.Utilities
         {
             var allWords = RemoveNonLetterCharacters(text).Split(' ');
             var wordsToFilter = GetWordsWithVowelsInTheMiddle(allWords.ToList());
+            wordsToFilter = AddWordBoundary(wordsToFilter);
 
             Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
 
@@ -45,6 +46,8 @@ namespace TextFilter.Utilities
             var allWords = RemoveNonLetterCharacters(text).Split(' ');
             var wordsToFilter = GetWordsWithLengthLessThanThree(allWords.ToList());
 
+            wordsToFilter = AddWordBoundary(wordsToFilter);
+
             Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
 
             var result = regex.Replace(text, "");
@@ -52,6 +55,15 @@ namespace TextFilter.Utilities
             result = result.Replace("  ", " ");
 
             return result;
+        }
+
+        private List<string> AddWordBoundary(List<string> wordsToFilter)
+        {
+            for (int i = 0; i < wordsToFilter.Count; i++)
+            {
+                wordsToFilter[i] = "\\b" + wordsToFilter[i] + "\\b";
+            }
+            return wordsToFilter;
         }
 
         private List<string> GetWordsWithLengthLessThanThree(List<string> allWords)
@@ -73,7 +85,7 @@ namespace TextFilter.Utilities
         {
             var allWords = RemoveNonLetterCharacters(text).Split(' ');
             var wordsToFilter = GetWordsWithLetterT(allWords.ToList());
-
+            wordsToFilter = AddWordBoundary(wordsToFilter);
             Regex regex = new Regex(string.Join('|', wordsToFilter), RegexOptions.Compiled);
 
             var result = regex.Replace(text, "");
